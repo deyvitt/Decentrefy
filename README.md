@@ -1,1 +1,1 @@
-![Alt text for your image]([paste-your-image-url-here](https://miro.com/welcomeonboard/aW93NVp5RkJpOGhzUERlQjZRdlUwNmIwMjdnNmx3VVZqd05jSjlYVkRYOWtDMlVuUFBZZmczb3BuYWlFendGT3wzNDU4NzY0NTg1NTk2MjU1MzM1fDI=?share_link_id=392836346787))
+https://miro.com/welcomeonboard/aW93NVp5RkJpOGhzUERlQjZRdlUwNmIwMjdnNmx3VVZqd05jSjlYVkRYOWtDMlVuUFBZZmczb3BuYWlFendGT3wzNDU4NzY0NTg1NTk2MjU1MzM1fDI=?share_link_id=392836346787
