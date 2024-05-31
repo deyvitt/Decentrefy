@@ -1,4 +1,3 @@
-
 ![alt text](image.png)
 
 #**Generator-Adversarial Transformer Large Language Model (GATLLM) with ERC721 as incentivization mechanism**
