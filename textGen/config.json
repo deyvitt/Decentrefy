@@ -1,0 +1,57 @@
+{
+   "Generator Model": {
+   },
+   "Main": {
+      "max_length": 100,
+      "learning_rate": 0.001,
+      "batch_size": 32
+   },
+
+   "textGen":  {
+      "embed_size": 512,
+      "num_heads": 8,
+      "dropout": 0.1,
+      "forward_expannsion": 4  
+   },
+
+   "dataloader": {
+    "max_size": 10000,
+    "batch_size": 32,
+    "csv_path": "path_to_your_file.csv",
+    "patience": 7
+
+   },
+
+   "textTrain": {
+      "batch_size": 32,
+      "epochs": 20,
+      "threshold": 0.01,
+      "checkpoint_path": "checkpoint_{}.pth",
+      "fine_tuned_checkpoint_path": "fine_tuned_checkpoint_{}.pth",
+      "final_model_path": "final_model.pth"
+   },
+
+   "textGenEncoder": {
+      "src_vocab_size": 5000,
+      "embed_size": 512,
+      "num_layers": 6,
+      "num_heads": 8,
+      "device": "cuda",
+      "forward_expansion": 4,
+      "dropout": 0.1,
+      "max_length": 100
+   },
+
+   "textGenDecoder": {
+      "textGenDecoder": {
+         "tgt_vocab_size": 5000,
+         "embed_size": 512,
+         "num_layer": 6,
+         "num_heads": 8,
+         "device": "cuda",
+         "forward_expansion": 4,
+         "dropout": 0.1,
+         "max_length": 100 
+      }
+   }
+}

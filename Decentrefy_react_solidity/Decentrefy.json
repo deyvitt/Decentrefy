@@ -1,0 +1,30 @@
+{
+    "name": "My Token",
+    "description": "This is a very special token",
+    "image": "ipfs://path/to/image",
+    "unlockable": "You can store your datasets in unlockable feature. Visit https://decentrefy.com/bonus",      
+    
+    "_format": "hh-sol-artificact-1",
+    "contractName": "Decentrefy",
+    "sourceName": "contracts/Decentrefy.sol",
+    "abi": [
+        {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnerChanged",
+            "type": "event"
+        }
+    ]
+} 

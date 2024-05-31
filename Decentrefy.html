@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+	text-align: center;
+}   
+h1{
+	text-align: center;
+}
+#connectButton {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+#submissionForm{
+    display: none;
+}
+#dateDisplay {
+  font-weight: bold;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+</style>
+</head>
+<body>
+<h1 style="color:blue;">Decentrefy</h1>
+<p style="color:grey;">Decentralized Language Model.</p>
+<p id="dateDisplay"></p>
+<button id="connectButton">Connect Wallet</button>
+<div id="adminPanel" style="display: none;">
+    </div>
+
+<div id="submissionForm">
+    <h2>Model Submission Form</h2>
+
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+<script src="main.js" defer></script>
+
+    <form action="/submit_model" method="post">
+        <label for="modelName">Model Name:</label><br>
+        <input type="text" id="modelName" name="modelName"><br>
+        <label for="modelDescription">Model Description:</label><br>
+        <textarea id="modelDescription" name="modelDescription"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
+
