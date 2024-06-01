@@ -1,4 +1,5 @@
-![alt text](image.png)
+(image.png)
+https://miro.com/welcomeonboard/aW93NVp5RkJpOGhzUERlQjZRdlUwNmIwMjdnNmx3VVZqd05jSjlYVkRYOWtDMlVuUFBZZmczb3BuYWlFendGT3wzNDU4NzY0NTg1NTk2MjU1MzM1fDI=?share_link_id=621747141777
 
 #**Generator-Adversarial Transformer Large Language Model (GATLLM) with ERC721 as incentivization mechanism**
 
