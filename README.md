@@ -38,14 +38,13 @@ AI / LLMs are coded in Python followed by C++, Pybinding, etc so it make sense t
 that this allows more coders to jointly innovate better models continuously. 
 
 ###**TRAINING STRATEGY**
-We will first and foremost feed in as many information about the fundamentals of programming, they types of styles of coding, what is python, how to code in Python, etc. Followed by feeding it with as many python codes as possible.
+We will first and foremost feed in as many information about the fundamentals of programming, they types of styles of coding, what is python, how to code in Python, etc. Followed by feeding it with as many python codes as possible. 
 
 ###**PREPROCESSING**
 Prior to feeding as many python codes from repositories into this model, we will need to use appropriate tools like *'static code analysis'* or *'Linters and formatters'* or *'Code runners with error reporting'* like *replit.com*, *jdoole.com*, etc.
 
 From this exercise we would be able to segregate out good codes from the bad ones, that allows us to plan the training
 of discriminator model with a carefully injected small errors like missing a ')' or '_', etc with gradually greater number of errors and then feeding in the corrected codes as the 'pair' in this instructional dataset. The strategy is to gradually build the model to 'understand' the basics of programming, what is a good code, what is a bad coding and what variable or functions to use, which algorithm is better to suite certain situations, etc.
-
 
 ###**Confidence Score:** 
 The generator model also have a *'confidence scoring metric'* that we designed from cosine similarity metric that will
@@ -76,6 +75,24 @@ Trained on high-quality datasets to minimize factual errors or biases.
 Discriminators:
 Analyze responses from generators and identify potentially false or misleading information.
 Utilize fact-checking techniques and knowledge bases to evaluate responses.
+
+**How about the difficulty in training Generator-Adversarial Models?**
+From our research, we identified that the risk of training a Generator-Adversarial models has to  do with the
+challenge in maintaining balance between the two models, where if you have too strong a discriminator, the result
+will be biased, if you have too strong a generator, the result will sway towards the generator's output. 
+
+Next challenge is the potential 'recursive' or endless competition / 'argument' between the two models, causing a 
+stalemate and no respond will be generated. The worst is when this recursive back and forth between the two models
+continues, resulting in high computational cost.
+
+###*Using RLHF and User Prompts
+In this GATLLM, we don't recursively connect the generator and adversarial models to each other recursively like most
+Generative-Adversarial Network Models like AlphaGo with the intention to quickly find the best move to win in the GO
+game. Here we design it in such a way that the generator model connects its output to the adversarial (or discriminator) model, in which the adversarial model will verify and amend the output accordingly before churning out
+to the user. The user can then alter their prompts to achieve better outputs, this helps break the potential recursive
+loop and guide both the models to generate the output the user wants. On top of that, the 'trainers' too will help in further training/refining both the model by constantly updating the datasets, the way both the model will learn how to
+generate better and better outputs without going through recursion and hike up the computational costs.
+
 
 Communication Protocol:
 Define a clear communication protocol for generators and discriminators to exchange information during the consensus process (e.g., proposed responses, confidence scores, discrimination feedback).
