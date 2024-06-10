@@ -1,9 +1,8 @@
-Decentralized small language model (DeSLM) network with a consensus protocol, incentivization mechanism, and two types of SLMs: 
-generators and discriminators. 
-
+#Generator-Adversarial Transformer Large Language Model (GATLLM) with incentivization mechanism: 
+ 
 Here's a breakdown of the key elements to consider:
 
-Consensus Protocol:
+Use of Blockchain Consensus Protocol (ie., Proof-of-Stake):
 
 Options:
 

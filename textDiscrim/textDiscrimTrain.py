@@ -178,7 +178,7 @@ def generate_text(generator, batch_size, noise_dim, device):
     
     return generated_text
 
-def generator_task(generator):
+def discriminator_task(discriminator):
     # Initialize IPFSConn
     ipfs_conn = IPFSKon()
 
@@ -186,16 +186,16 @@ def generator_task(generator):
     weights = ipfs_conn.download_weights('Qm...')  # Replace 'Qm...' with the actual IPFS hash
 
     # Apply the weights to the generator model
-    generator.load_state_dict(weights)
+    discriminator.load_state_dict(weights)
 
     # Generate some new text
-    text = generate_text(generator)
+    text = generate_text(discriminator)
 
     # Update the generator model based on the new text
-    generator.update(text)
+    discriminator.update(text)
 
     # Upload the updated weights back to the blockchain
-    ipfs_conn.upload_weights(generator.state_dict())
+    ipfs_conn.upload_weights(discriminator.state_dict())
 
 if __name__ == "__main__":
     final_loss = main()

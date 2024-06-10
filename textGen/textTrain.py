@@ -18,6 +18,15 @@ fine_tuned_checkpoint_path = config['textTrain']['fine_tuned_checkpoint_path']
 final_model_path = config['textTrain']['final_model_path']
 
 class TextTransTrainer:
+    def __init__(self, model, criterion, optimizer, generator, discriminator, loss_function):
+        self.model = model
+        self.criterion = criterion
+        self.optimizer = optimizer
+        self.generator = generator
+        self.discriminator = discriminator
+        self.loss_function = loss_function
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
     def train(self, data_loader, epoch):
         self.model.train()
         running_loss = 0.0
@@ -29,6 +38,15 @@ class TextTransTrainer:
             loss.backward()
             self.optimizer.step()
             running_loss += loss.item()
+
+            # Generator and Discriminator training steps
+            output = self.generator(inputs)
+            score = self.discriminator(output)
+            gen_disc_loss = self.loss_function(score, labels)
+            gen_disc_loss.backward()
+            self.optimizer.step()
+            self.optimizer.zero_grad()
+
         avg_loss = running_loss / len(data_loader)
         val_loss = self.validate(data_loader,epoch)
         if self.early_stopping(epoch, {'val_loss': val_loss}):

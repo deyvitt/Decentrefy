@@ -2,9 +2,10 @@ import json
 import torch
 import torch.nn as nn
 import re
+import os
 import nltk
-#import sys
-from flask import Flask, flash, render_template
+#import requests
+#from flask import Flask#, flash, render_template
 from torch.nn import MultiheadAttention
 from torchtext.data import Field
 from nltk.corpus import stopwords
@@ -12,7 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from collections import Counter
 from itertools import chain
-from textGenDecoder import Decoder
+#from textGenDecoder import Decoder
 from textDiscrimEncoder import Encoder
 from confidenceScore import ConfidenceScorer
 
@@ -135,6 +136,37 @@ class TextTransformer(nn.Module):
         pos_enc = pos_enc.unsqueeze(0).transpose(0, 1)
         return x + pos_enc.to(x.device)    
 
+"""
+These snippets modifies this GAN model slightly, its experimental so its commented out:
+app = Flask(__name__)
+
+@app.route('/generate', methods=['POST'])
+def generate():
+    user_prompt = requests.form['prompt']
+
+    # Initialize your generator (Decoder) here
+    decoder = Decoder(confidenceScore = 1)
+
+    # Generate the code
+    generated_code = decoder(user_prompt)
+
+    # Initialize discriminator (TextDiscrim)
+    model = TextTransformer
+    text_discrim = TextDiscrim(model)
+
+    # Get the confidence score
+    score = text_discrim.get_confidence_score(generated_code)
+    confidence_threshold = 1
+
+    # If the score is high enough, return the generated code
+    if score > confidence_threshold: 
+        flash('Generated code is likely to be executable.')
+        return render_template('code.html', code=generated_code)  # code.html is just an example
+    else:
+        flash('Generated code is likely to be non-executable.')
+        return render_template('error.html')  # Assuming you have an error.html template
+"""
+
 if __name__ == "__main__":
     # This code will only be run when textTransformer.py is executed as a standalone program
     tokenizer = TextTokenizer('data.txt')
@@ -142,25 +174,26 @@ if __name__ == "__main__":
     tokenizer.create_vocab_file('vocab.json')
     transformer = TextTransformer(config, tokenizer)
 
-    app.run(debug=True)
+    #app = Flask(__name__)
+    #app.run(debug=True)
 
-# Define your training data
-training_data = ["This is the first sentence.", "This is another sentence.", "And this is the last one."]  # replace with your actual data
+    # Define your training data
+    training_data = ["This is the first sentence.", "This is another sentence.", "And this is the last one."]  # replace with your actual data
 
-# Define the maximum number of words in your vocabulary
-VOCAB_SIZE = 10000  # replace with your actual vocabulary size
+    # Define the maximum number of words in your vocabulary
+    VOCAB_SIZE = 10000  # replace with your actual vocabulary size
 
-# Get a list of all words in your training data
-words = list(chain(*[word_tokenize(text) for text in training_data]))
+    # Get a list of all words in your training data
+    words = list(chain(*[word_tokenize(text) for text in training_data]))
 
-# Count the frequency of each word
-word_counts = Counter(words)
+    # Count the frequency of each word
+    word_counts = Counter(words)
 
-# Create a vocabulary by sorting the words by frequency and taking the top N words
-vocabulary = [word for word, _ in word_counts.most_common(VOCAB_SIZE)]
+    # Create a vocabulary by sorting the words by frequency and taking the top N words
+    vocabulary = [word for word, _ in word_counts.most_common(VOCAB_SIZE)]
 
-# Create a dictionary that maps each word in the vocabulary to a unique integer
-word_to_int = {word: i for i, word in enumerate(vocabulary)}
+    # Create a dictionary that maps each word in the vocabulary to a unique integer
+    word_to_int = {word: i for i, word in enumerate(vocabulary)}
 
-# Now you can use word_to_int to convert words to integers
-tokens = [word_to_int[word] for text in training_data for word in word_tokenize(text) if word in word_to_int]
+    # Now you can use word_to_int to convert words to integers
+    tokens = [word_to_int[word] for text in training_data for word in word_tokenize(text) if word in word_to_int]
